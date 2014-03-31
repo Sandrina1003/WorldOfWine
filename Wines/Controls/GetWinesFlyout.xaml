@@ -1,0 +1,483 @@
+﻿<UserControl
+    x:Class="Wines.Controls.GetWinesFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wines.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="MainGrid">
+        <Popup x:Name="GetWinesPopup" Margin="0,0,0,0">
+            <Border x:Name="mainBorder" BorderThickness="1" BorderBrush="White">
+                <Border.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromHorizontalOffset="300" />
+                    </TransitionCollection>
+                </Border.Transitions>
+
+                <Grid x:Name="gdGet" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button HorizontalAlignment="Left" Margin="0,13,0,0" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource RemoveAppBarButtonStyle}" Click="Button_Back_Click" Width="79"/>
+                    <TextBlock Grid.Row="0" Margin="0,20,0,20" Text="Set Search Parameters " Style="{StaticResource TitleTextStyle}" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <Grid Grid.Column="0" Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="TypeGrid" HorizontalAlignment="Center" Grid.Column="0" Margin="5,10,5,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="TypeTitle" Text="Type"  IsHitTestVisible="false" Style="{StaticResource CaptionTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="Bold" Margin="10,10,0,20"/>
+                                <RadioButton x:Name="wine" Grid.Row="1" GroupName="TypeGroup">Wine</RadioButton>
+                                <RadioButton x:Name="spirits" Grid.Row="2" GroupName="TypeGroup">Spirit</RadioButton>
+                                <RadioButton x:Name="table" Grid.Row="3" GroupName="TypeGroup">Table</RadioButton>
+                                <RadioButton x:Name="desert" Grid.Row="4" GroupName="TypeGroup">Desert</RadioButton>
+                                <RadioButton x:Name="sparkling" Grid.Row="5" GroupName="TypeGroup">Sparkling</RadioButton>
+                                <RadioButton x:Name="fruit" Grid.Row="6" GroupName="TypeGroup">Fruit</RadioButton>
+                                <RadioButton x:Name="cider" Grid.Row="7" GroupName="TypeGroup">Cider</RadioButton>
+                                <RadioButton x:Name="sake" Grid.Row="8" GroupName="TypeGroup">Sake</RadioButton>
+                            </Grid>
+                            <Grid x:Name="ColorGrid" HorizontalAlignment="Center" Grid.Column="1" Margin="5,10,5,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="ColorTitle" Text="Color"  IsHitTestVisible="false" Style="{StaticResource CaptionTextStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="Bold" Margin="10,10,0,20"/>
+                                <RadioButton x:Name="red" Grid.Row="1" GroupName="ColorGroup">Red</RadioButton>
+                                <RadioButton x:Name="white" Grid.Row="2" GroupName="ColorGroup">White</RadioButton>
+                                <RadioButton x:Name="rose" Grid.Row="3" GroupName="ColorGroup">Rose</RadioButton>
+                                <RadioButton x:Name="amber" Grid.Row="4" GroupName="ColorGroup">Amber</RadioButton>
+                                <RadioButton x:Name="clear" Grid.Row="5" GroupName="ColorGroup">Clear</RadioButton>
+                            </Grid>
+
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="5,10,5,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="country" Margin="5,10,5,10" Text="Country" Grid.Column="0" IsHitTestVisible="false" FontSize="16" />
+                            <ComboBox x:Name="cmbCountry" Grid.Column="1" Margin="5,5,5,10">
+                                <Grid x:Name="US">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/United States of America(USA).png"></Image>
+                                    <TextBlock Grid.Column="1">United States</TextBlock>
+                                </Grid>
+                                <Grid x:Name="AR">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Argentina.png"></Image>
+                                    <TextBlock Grid.Column="1">Argentina</TextBlock>
+                                </Grid>
+                                <Grid x:Name="AT">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Austria.png"></Image>
+                                    <TextBlock Grid.Column="1">Austria</TextBlock>
+                                </Grid>
+                                <Grid x:Name="BE">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Belgium.png"></Image>
+                                    <TextBlock Grid.Column="1">Belgium</TextBlock>
+                                </Grid>
+                                <Grid x:Name="BZ">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Belize.png"></Image>
+                                    <TextBlock Grid.Column="1">Belize</TextBlock>
+                                </Grid>
+                                <Grid x:Name="BR">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Brazil.png"></Image>
+                                    <TextBlock Grid.Column="1">Brazil</TextBlock>
+                                </Grid>
+                                <Grid x:Name="CA">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Canada.png"></Image>
+                                    <TextBlock Grid.Column="1">Canada</TextBlock>
+                                </Grid>
+                                <Grid x:Name="CN">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/China.png"></Image>
+                                    <TextBlock Grid.Column="1">China</TextBlock>
+                                </Grid>
+                                <Grid x:Name="CY">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Cyprus.png"></Image>
+                                    <TextBlock Grid.Column="1">Cyprus</TextBlock>
+                                </Grid>
+                                <Grid x:Name="CZ">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Czech Republic.png"></Image>
+                                    <TextBlock Grid.Column="1">Czech Republic</TextBlock>
+                                </Grid>
+                                <Grid x:Name="DK">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Denmark.png"></Image>
+                                    <TextBlock Grid.Column="1">Denmark</TextBlock>
+                                </Grid>
+                                <Grid x:Name="EE">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Estonia.png"></Image>
+                                    <TextBlock Grid.Column="1">Estonia</TextBlock>
+                                </Grid>
+                                <Grid x:Name="FI">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Finland.png"></Image>
+                                    <TextBlock Grid.Column="1">Finland</TextBlock>
+                                </Grid>
+                                <Grid x:Name="FR">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/France.png"></Image>
+                                    <TextBlock Grid.Column="1">France</TextBlock>
+                                </Grid>
+                                <Grid x:Name="DE">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Germany.png"></Image>
+                                    <TextBlock Grid.Column="1">Germany</TextBlock>
+                                </Grid>
+                                <Grid x:Name="GB">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/United Kingdom(Great Britain).png"></Image>
+                                    <TextBlock Grid.Column="1">Great Britain</TextBlock>
+                                </Grid>
+                                <Grid x:Name="HK">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Hungary.png"></Image>
+                                    <TextBlock Grid.Column="1">Hong Kong</TextBlock>
+                                </Grid>
+                                <Grid x:Name="HU">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Ireland.png"></Image>
+                                    <TextBlock Grid.Column="1">Hungary</TextBlock>
+                                </Grid>
+                                <Grid x:Name="IE">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Ireland.png"></Image>
+                                    <TextBlock Grid.Column="1">Ireland</TextBlock>
+                                </Grid>
+                                <Grid x:Name="IT">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Italy.png"></Image>
+                                    <TextBlock Grid.Column="1">Italy</TextBlock>
+                                </Grid>
+                                <Grid x:Name="JP">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/japan.png"></Image>
+                                    <TextBlock Grid.Column="1">Japan</TextBlock>
+                                </Grid>
+                                <Grid x:Name="MY">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Malaysia.png"></Image>
+                                    <TextBlock Grid.Column="1">Malaysia</TextBlock>
+                                </Grid>
+                                <Grid x:Name="MT">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Malta.png"></Image>
+                                    <TextBlock Grid.Column="1">Malta</TextBlock>
+                                </Grid>
+                                <Grid x:Name="MU">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Mauritius.png"></Image>
+                                    <TextBlock Grid.Column="1">Mauritius</TextBlock>
+                                </Grid>
+                                <Grid x:Name="MX">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Mexico.png"></Image>
+                                    <TextBlock Grid.Column="1">Mexico</TextBlock>
+                                </Grid>
+                                <Grid x:Name="NL">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Netherlands.png"></Image>
+                                    <TextBlock Grid.Column="1">Netherlands</TextBlock>
+                                </Grid>
+                                <Grid x:Name="NZ">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/New Zealand.png"></Image>
+                                    <TextBlock Grid.Column="1">New Zealand</TextBlock>
+                                </Grid>
+                                <Grid x:Name="NO">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Norway.png"></Image>
+                                    <TextBlock Grid.Column="1">Norway</TextBlock>
+                                </Grid>
+                                <Grid x:Name="PH">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Philippines.png"></Image>
+                                    <TextBlock Grid.Column="1">Philippines</TextBlock>
+                                </Grid>
+                                <Grid x:Name="PL">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Poland.png"></Image>
+                                    <TextBlock Grid.Column="1">Poland</TextBlock>
+                                </Grid>
+                                <Grid x:Name="PT">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Portugal.png"></Image>
+                                    <TextBlock Grid.Column="1">Portugal</TextBlock>
+                                </Grid>
+                                <Grid x:Name="PR">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Puerto Rico.png"></Image>
+                                    <TextBlock Grid.Column="1">Puerto Rico</TextBlock>
+                                </Grid>
+                                <Grid x:Name="RO">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Romania.png"></Image>
+                                    <TextBlock Grid.Column="1">Romania</TextBlock>
+                                </Grid>
+                                <Grid x:Name="RU">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Russian Federation.png"></Image>
+                                    <TextBlock Grid.Column="1">Russia</TextBlock>
+                                </Grid>
+                                <Grid x:Name="SG">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Singapore.png"></Image>
+                                    <TextBlock Grid.Column="1">Singapore</TextBlock>
+                                </Grid>
+                                <Grid x:Name="ZA">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/South Africa.png"></Image>
+                                    <TextBlock Grid.Column="1">South Africa</TextBlock>
+                                </Grid>
+                                <Grid x:Name="ES">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Spain.png"></Image>
+                                    <TextBlock Grid.Column="1">Spain</TextBlock>
+                                </Grid>
+                                <Grid x:Name="SE">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Sweden.png"></Image>
+                                    <TextBlock Grid.Column="1">Sweden</TextBlock>
+                                </Grid>
+                                <Grid x:Name="CH">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Switzerland.png"></Image>
+                                    <TextBlock Grid.Column="1">Switzerland</TextBlock>
+                                </Grid>
+                                <Grid x:Name="UA">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="/Assets/Ukraine.png"></Image>
+                                    <TextBlock Grid.Column="1">Ukraine</TextBlock>
+                                </Grid>
+
+
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="5,10,5,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Minimum Price" Grid.Row="0" IsHitTestVisible="false" FontSize="16" />
+                                <TextBox Grid.Row="1"  x:Name="minPrice"></TextBox>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,10,5,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Maximum Price" Grid.Row="0" IsHitTestVisible="false" FontSize="16" />
+                                <TextBox  x:Name="maxPrice" Grid.Row="1"></TextBox>
+                            </Grid>
+
+                        </Grid>
+                        <Grid x:Name="SortGrid" Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Style="{StaticResource CaptionTextStyle}" Margin="5,0,5,10" FontSize="16" FontWeight="Bold">Sort by price</TextBlock>
+                            <RadioButton x:Name="asc" Margin="5,10,5,10" Grid.Row="1" Grid.Column="0" GroupName="PriceGroup">Ascending</RadioButton>
+                            <RadioButton x:Name="desc" Margin="5,10,5,10" Grid.Row="1" Grid.Column="1" GroupName="PriceGroup">Descending</RadioButton>
+                        </Grid>
+                        <Grid Grid.Row="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Margin="5,10,5,10" Style="{StaticResource CaptionTextStyle}" Grid.Row="0" Grid.Column="0" FontSize="16">Min Rank</TextBlock>
+                            <TextBlock Margin="5,10,5,10" Style="{StaticResource CaptionTextStyle}" Grid.Row="1" Grid.Column="0" FontSize="16"> Max Rank</TextBlock>
+                            <Slider x:Name="sldMin" Grid.Row="0" Grid.Column="1" Maximum="5" Minimum="0"></Slider>
+                            <Slider x:Name="sldMax" Grid.Row="1" Grid.Column="1" Maximum="5" Minimum="0" LargeChange="10"></Slider>
+                        </Grid>
+                        <Grid Grid.Row="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Margin="5,10,5,10" FontSize="16" Style="{StaticResource CaptionTextStyle}" Grid.Column="0" FontWeight="Bold">Get Recommendations</TextBlock>
+                            <Button x:Name="Get" Grid.Column="1" Margin="68,0,0,0" Width="118" Tapped="Get_Click" >Go >></Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

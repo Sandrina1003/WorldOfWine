@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="Wines.Controls.LoginFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wines.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid x:Name="MainGrid">
+        <Popup  x:Name="LoginPopup" Margin="0,0,0,0">
+            <Border x:Name="mainBorder" BorderThickness="1" BorderBrush="White">
+                <Border.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="200" />
+                    </TransitionCollection>
+                </Border.Transitions>
+
+                <Grid x:Name="gdSignIn" Height="350" Width="435" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+                        <TextBlock Margin="10,10,10,10" Style="{StaticResource CaptionTextStyle}" HorizontalAlignment="Center" Text="You have to be signed in in order to rate"/>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Button Grid.Column="0"  Margin="0,0,0,10" VerticalAlignment="Stretch" BorderThickness="0" Style="{StaticResource RemoveAppBarButtonStyle}" Click="Button_Back_Click" HorizontalAlignment="Left" Height="64" Width="72"/>
+                            <TextBlock Margin="10,0,10,10" Style="{StaticResource TitleTextStyle}" Text="Sign in using your SNOOTH.COM Account" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="30,10,5,10">
+                        <TextBlock Text="I don't have an account" Margin="20,0,0,0" Style="{StaticResource TitleTextStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <Button x:Name="SignUp" Click="SignUp_Click" Margin="20,0,0,0" HorizontalAlignment="Center" FontSize="12"  >Sign Up</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+                        <TextBlock Text="Username/Email" Style="{StaticResource CaptionTextStyle}" Margin="20,10,0,10" HorizontalAlignment="Left"></TextBlock>
+            <TextBox x:Name="Username" Margin="10,0,10,0"  TextWrapping="NoWrap" HorizontalAlignment="Stretch"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+                        <TextBlock Style="{StaticResource CaptionTextStyle}" Text="Password" Margin="20,10,0,10" HorizontalAlignment="Left"></TextBlock>
+                        <PasswordBox x:Name="Password"  Margin="10,0,10,0" HorizontalAlignment="Stretch"></PasswordBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5">
+            <Button x:Name="SignIn" Click="SignIn_Click" HorizontalAlignment="Right">Sign In</Button>
+        </StackPanel>
+    </Grid>    
+            </Border>
+            
+        </Popup>
+
+    </Grid>
+</UserControl>

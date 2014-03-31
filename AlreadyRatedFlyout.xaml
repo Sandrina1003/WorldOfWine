@@ -1,0 +1,62 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wines.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:Callisto.Controls"
+    x:Class="Wines.Controls.AlreadyRatedFlyout"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid x:Name="MainGrid">
+            <Popup x:Name="AlreadyRatedPopup" Margin="0,0,0,0">
+                <Border x:Name="mainBorder" BorderThickness="1" BorderBrush="White">
+                    <Border.Transitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition FromVerticalOffset="200" />
+                        </TransitionCollection>
+                    </Border.Transitions>
+
+                    <Grid x:Name="gdRate" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource RemoveAppBarButtonStyle}" Click="Button_Back_Click" Height="72"/>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,20,0" TextWrapping="Wrap" Style="{StaticResource TitleTextStyle}" Text="Already Rated" VerticalAlignment="Center" FontSize="30"/>
+                        </Grid>
+                            <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="My Rating :   " Margin="5,0,5,0" Style="{StaticResource TitleTextStyle}" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock Text="My Review :    " Margin="5,0,5,0" Style="{StaticResource TitleTextStyle}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+                            <TextBlock Text="Date :   " Margin="5,0,10,20" Style="{StaticResource TitleTextStyle}" Grid.Row="2" Grid.Column="0"/>
+                            <Controls:Rating  x:Name="UserRating" Margin="5,0,10,0" Grid.Row="0" Grid.Column="1"   IsTapEnabled="False" IsEnabled="False" ItemCount="5" Background="Transparent" Foreground="Blue" />
+
+
+                            <TextBox x:Name="Review" Grid.Column="2" Grid.Row="1" Margin="15,0,10,10" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Foreground="White" BorderThickness="0" TextWrapping="Wrap"  Height="100" MaxHeight="100" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                
+                                <TextBlock x:Name="Date"  Margin="15,0,10,20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource CaptionTextStyle}" FontSize="16" FontWeight="Bold" ></TextBlock>
+                             
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Popup>
+        </Grid>
+    </Grid>
+</UserControl>

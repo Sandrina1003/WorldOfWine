@@ -1,0 +1,88 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wines.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:Callisto.Controls"
+    x:Class="Wines.Controls.ViewReviewsFlyout"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid x:Name="MainGrid" >
+        <Popup x:Name="ViewReviewsPopup" Margin="0,0,0,0"  >
+            <Border x:Name="mainBorder" BorderThickness="1" BorderBrush="White">
+                <Border.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromHorizontalOffset="300" />
+                    </TransitionCollection>
+                </Border.Transitions>
+
+                <Grid x:Name="gdRev" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button HorizontalAlignment="Left" Margin="0,13,0,0" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource RemoveAppBarButtonStyle}" Click="Button_Back_Click" Width="79"/>
+                        <TextBlock Grid.Row="0" Margin="0,20,0,20" Text="Reviews for this wine" Style="{StaticResource TitleTextStyle}" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Width="Auto" Height="500">
+                        <ListView x:Name="ReviewsLView"
+                        Margin="30,0,30,0"
+                        ItemsSource="{Binding}"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        SelectionMode="None"
+                        IsItemClickEnabled="False">
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+
+                                            <TextBlock Text="{Binding index}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"  Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="20"  Margin="5,0,5,5"/>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Stretch" Grid.Column="1" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                                <TextBlock Text="Name:" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource BasicTextStyle}" Height="Auto" Margin="15,0,15,0"/>
+                                                <TextBlock Text="{Binding name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource BasicTextStyle}" Height="Auto" TextWrapping="NoWrap" Margin="15,0,15,0"/>
+                                            </StackPanel>
+                                                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Stretch" Grid.Column="1" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                                <TextBlock Text="Rating :" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,5"/>
+                                                <Controls:Rating Value="{Binding rating}" x:Name="Rating" Margin="5,0,10,0" Grid.Row="0" Grid.Column="1"   IsTapEnabled="False" IsEnabled="False" ItemCount="5" Background="Transparent" Foreground="Red"/>
+                                            </StackPanel>
+                                                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Stretch" Grid.Column="1" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                                <TextBlock Text="Review:" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="Wrap" Margin="15,0,15,5"/>
+                                                <TextBlock Text="{Binding body}" Height="Auto" Width="300" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="Wrap" Margin="15,0,15,5"/>
+                                            </StackPanel>
+                                                <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Stretch" Grid.Column="1" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                                <TextBlock Text="Date:" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,5"/>
+                                                <TextBlock Text="{Binding date}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,5"/>
+                                            </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            
+                        </ListView>
+                        
+                    </Grid>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
